@@ -2,6 +2,9 @@
 #include <MainMenuState.hpp>
 #include <memory>
 #include <chrono>
+extern "C" {
+    #include <raylib.h>
+}
 
 int main()
 {
@@ -13,6 +16,8 @@ int main()
     StateMachine state_machine = StateMachine();
     state_machine.add_state(std::make_unique<MainMenuState>(), false);
     state_machine.handle_state_changes(delta_time);
+
+    InitWindow(288, 512, "Flappy Bird");
 
     while (!state_machine.is_game_ending())
     {

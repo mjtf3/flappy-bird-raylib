@@ -1,5 +1,8 @@
 #include <MainMenuState.hpp>
 #include <iostream>
+extern "C" {
+    #include <raylib.h>
+}
 
 MainMenuState::MainMenuState()
 {
@@ -23,5 +26,7 @@ void MainMenuState::update(float deltaTime)
 
 void MainMenuState::render()
 {
-    std::cout << "You entered: " << this->entered_key << std::endl;
+    BeginDrawing();
+    DrawText("Bienvenido a Flappy Bird DCA", 50, 50, 20, LIGHTGRAY);
+    EndDrawing();
 }
