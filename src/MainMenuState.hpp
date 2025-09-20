@@ -1,5 +1,6 @@
 #pragma once
 #include <GameState.hpp>
+#include <Bird.hpp>
 
 class MainMenuState : public GameState
 {
@@ -17,5 +18,6 @@ class MainMenuState : public GameState
 
     
     private:
+        Bird player_bird;
         char entered_key;
 };
