@@ -18,7 +18,7 @@ int main()
     state_machine.handle_state_changes(delta_time);
     SetTargetFPS(60);
 
-    InitWindow(288, 512, "Flappy Bird");
+    InitWindow(512, 512, "Flappy Bird");
 
     while (!state_machine.is_game_ending())
     {

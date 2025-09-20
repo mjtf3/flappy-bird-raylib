@@ -1,6 +1,8 @@
 #pragma once
 #include <GameState.hpp>
 #include <Bird.hpp>
+#include <deque>
+#include <PipePair.hpp>
 
 class MainMenuState : public GameState
 {
@@ -18,6 +20,7 @@ class MainMenuState : public GameState
 
     
     private:
+        std::deque<PipePair> pipes;
         Bird player_bird;
         char entered_key;
 };
