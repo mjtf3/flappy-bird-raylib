@@ -1,14 +1,12 @@
 #pragma once
 #include <GameState.hpp>
-#include <Bird.hpp>
-#include <deque>
-#include <PipePair.hpp>
+#include <raylib.h>
 
-class MainMenuState : public GameState
+class GameOverState : public GameState
 {
     public:
-        MainMenuState();
-        ~MainMenuState() = default;
+        GameOverState(int score);
+        ~GameOverState() = default;
 
         void init() override;
         void handleInput() override;
@@ -20,8 +18,7 @@ class MainMenuState : public GameState
 
     
     private:
-        std::deque<PipePair> pipes;
-        Bird player_bird;
-        Rectangle bird_col;
         char entered_key;
+        bool restart_game = false;
+        int score;
 };
