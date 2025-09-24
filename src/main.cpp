@@ -8,6 +8,7 @@ extern "C" {
 
 int main()
 {
+    InitWindow(288, 512, "Flappy Bird");
     //Implement the main loop with delta time
     std::chrono::steady_clock::time_point last_time = std::chrono::steady_clock::now();
     std::chrono::steady_clock::time_point current_time;
@@ -18,8 +19,7 @@ int main()
     state_machine.handle_state_changes(delta_time);
     SetTargetFPS(60);
 
-    InitWindow(512, 512, "Flappy Bird");
-
+    
     while (!state_machine.is_game_ending())
     {
         delta_time = GetFrameTime();

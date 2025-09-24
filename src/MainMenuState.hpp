@@ -3,7 +3,6 @@
 #include <Bird.hpp>
 #include <deque>
 #include <PipePair.hpp>
-
 class MainMenuState : public GameState
 {
     public:
@@ -24,4 +23,6 @@ class MainMenuState : public GameState
         Bird player_bird;
         Rectangle bird_col;
         char entered_key;
+        Texture2D birdSprite;
+        Texture2D pipeSprite;
 };

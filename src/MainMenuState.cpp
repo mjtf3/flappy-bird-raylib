@@ -36,12 +36,20 @@ bool CheckCollision(Rectangle bird_col, PipePair pipes) {
 
 MainMenuState::MainMenuState()
 {
-    this->player_bird = Bird{.x = 200, .y = 200, .vy = 0.0f};
+    this->player_bird = Bird{.x = 90, .y = 200, .vy = 0.0f};
 }
 
 void MainMenuState::init()
 {
     std::cout << "You are in the Main Menu State" << std::endl;
+    this->birdSprite = LoadTexture("assets/redbird-midflap.png");
+    this->pipeSprite = LoadTexture("assets/pipe-green.png");
+    this->player_bird.height = birdSprite.height;
+    this->player_bird.width = birdSprite.width;
+    PIPE_H = pipeSprite.height;
+    PIPE_W = pipeSprite.width;
+    pipe_gap = birdSprite.height + 4.50f;
+
 }
 
 void MainMenuState::handleInput()
@@ -62,8 +70,8 @@ void MainMenuState::update(float deltaTime)
     player_bird.vy += gravity * deltaTime;
     player_bird.y += player_bird.vy * deltaTime;
 
-    this->bird_col = Rectangle{.x = player_bird.x - player_bird.radio, .y = player_bird.y - player_bird.radio, .width = player_bird.radio*2, .height = player_bird.radio*2};
-    
+    this->bird_col = Rectangle{.x = player_bird.x, .y = player_bird.y, .width = player_bird.width, .height = player_bird.height};
+
     //TUBERIAS
     // Acumular tiempo para el spawn de pipes
     spawnTimer += deltaTime * 1000.0f; // Convertir a milisegundos
@@ -71,8 +79,8 @@ void MainMenuState::update(float deltaTime)
     // Verificar si es tiempo de spawnar
     if (spawnTimer >= spawnEvery)
     {
-        float pipe_y_offset_top = GetRandomValue(PIPE_H/2, GetScreenWidth()/2);
-        float pipe_y_offset_bottom = GetRandomValue(PIPE_H/2, GetScreenWidth()/2);
+        float pipe_y_offset_top = GetRandomValue(PIPE_H/2, GetScreenWidth());
+        float pipe_y_offset_bottom = GetRandomValue(PIPE_H/2, GetScreenWidth());
         
         float start_x = GetScreenWidth();
         PipePair new_pipe = PipePair{
@@ -118,11 +126,14 @@ void MainMenuState::render()
     ClearBackground(BLACK);
     DrawText("Bienvenido a Flappy Bird DCA", 50, 50, 20, LIGHTGRAY);
     //DrawRectanglePro(bird_col, {0,0}, 0.0f, BLUE);
-    DrawCircle(player_bird.x, player_bird.y, player_bird.radio, RED);
+    //DrawCircle(player_bird.x, player_bird.y, player_bird.radio, RED);
+    DrawTexture(birdSprite, player_bird.x, player_bird.y, WHITE);
     for (auto &&i : pipes)
     {
-        DrawRectangleRec(i.top, GREEN);
-        DrawRectangleRec(i.bottom, GREEN);
+        //DrawRectangleRec(i.top, GREEN);
+        //DrawRectangleRec(i.bottom, GREEN);
+        DrawTextureEx(this->pipeSprite, {i.top.x + PIPE_W, i.top.y + PIPE_H}, 180.0f, 1.0f, WHITE);
+        DrawTextureEx(this->pipeSprite, {i.bottom.x, i.bottom.y}, 0.0f, 1.0f, WHITE);
     }
 
     std::string score_str = "Puntuacion " + std::to_string(score);

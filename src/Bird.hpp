@@ -4,4 +4,5 @@ struct Bird
     float y;
     float vy;
     float radio = 18.0f;
+    float height, width;
 };
