@@ -1,5 +1,6 @@
 #include <StateMachine.hpp>
 #include <MainMenuState.hpp>
+#include <MainRealMenuState.hpp>
 #include <memory>
 #include <chrono>
 extern "C" {
@@ -15,7 +16,7 @@ int main()
     float delta_time = 0.0f;
 
     StateMachine state_machine = StateMachine();
-    state_machine.add_state(std::make_unique<MainMenuState>(), false);
+    state_machine.add_state(std::make_unique<MainRealMenuState>(), false);
     state_machine.handle_state_changes(delta_time);
     SetTargetFPS(60);
 

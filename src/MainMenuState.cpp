@@ -44,6 +44,7 @@ void MainMenuState::init()
     std::cout << "You are in the Main Menu State" << std::endl;
     this->birdSprite = LoadTexture("assets/redbird-midflap.png");
     this->pipeSprite = LoadTexture("assets/pipe-green.png");
+    this->background = LoadTexture("assets/background-day.png");
     this->player_bird.height = birdSprite.height;
     this->player_bird.width = birdSprite.width;
     PIPE_H = pipeSprite.height;
@@ -124,6 +125,7 @@ void MainMenuState::render()
 {
     BeginDrawing();
     ClearBackground(BLACK);
+    DrawTexture(this->background, 0, 0, WHITE);
     DrawText("Bienvenido a Flappy Bird DCA", 50, 50, 20, LIGHTGRAY);
     //DrawRectanglePro(bird_col, {0,0}, 0.0f, BLUE);
     //DrawCircle(player_bird.x, player_bird.y, player_bird.radio, RED);
